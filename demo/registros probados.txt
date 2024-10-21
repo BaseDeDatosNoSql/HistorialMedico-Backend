@@ -1,0 +1,5 @@
+registros probados 
+
+curl -X POST http://localhost:8080/api/pacientes ^-H "Content-Type: application/json" ^-d "{\"ci\": \"12345678\", \"nombre\": \"Juan\", \"apellido\": \"Pérez\", \"fechaNacimiento\": \"1990-01-01\", \"sexo\": \"Masculino\"}"
+
+curl -X POST http://localhost:8080/api/registros/12345678 ^ -H "Content-Type: application/json" ^ -d "{\"ciPaciente\": \"12345678\", \"fecha\": \"2024-10-20\", \"tipo\": \"Consulta\", \"diagnostico\": \"Dolor de cabeza\", \"medico\": \"Dr. López\", \"institucion\": \"Clínica Central\", \"descripcion\": \"Dolor leve persistente\", \"medicacion\": \"Paracetamol\"}"
