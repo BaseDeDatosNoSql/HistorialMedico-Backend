@@ -24,13 +24,13 @@ El proyecto utiliza **JSON** como formato principal para el intercambio de datos
 
 El sistema expone varias URL para interactuar con el sistema de registros médicos. A continuación se detallan las principales:
 
-GET	/api/registros	Obtener todos los registros médicos
-GET	/api/registros/{id}	Obtener un registro médico por su ID
-POST	/api/registros	Crear un nuevo registro médico
-PUT	/api/registros/{id}	Actualizar un registro médico existente
-DELETE	/api/registros/{id}	Eliminar un registro médico por su ID
-GET	/api/registros/criterios	Buscar registros médicos por criterios (tipo, diagnóstico, etc.)
-Parámetros de búsqueda en /api/registros/criterios:
+- GET	/api/registros	Obtener todos los registros médicos
+- GET	/api/registros/{id}	Obtener un registro médico por su ID
+- POST	/api/registros	Crear un nuevo registro médico
+- PUT	/api/registros/{id}	Actualizar un registro médico existente
+- DELETE	/api/registros/{id}	Eliminar un registro médico por su ID
+- GET	/api/registros/criterios	. Buscar registros médicos por criterios (tipo, diagnóstico, etc.)
+- *Parámetros de búsqueda en /api/registros/criterios*:
 tipo: Filtrar por el tipo de consulta (CONSULTA, EXAMEN, INTERNACION).
 diagnostico: Filtrar por diagnóstico (e.g., Gripe).
 medico: Filtrar por el nombre del médico (e.g., Dr. García).
@@ -39,26 +39,25 @@ institucion: Filtrar por el nombre de la institución médica (e.g., Mutualista 
 ## **Instalación**
 
 Para instalar el proyecto localmente, sigue estos pasos:
-  1- Clona el repositorio de GitHub:
+1. Clona el repositorio de GitHub:
   git clone https://github.com/usuario/historial-medico-backend.git
   cd historial-medico-backend
-  2- Asegúrate de tener Java 17 instalado.
-  3- Instala las dependencias de Maven con ./mvnw clean install
-  4- Configura las variables de entorno para conectar con MongoDB (detallado en la sección de configuración).
-  5- Ejecuta el proyecto.
+2. Asegúrate de tener Java 17 instalado.
+3. Instala las dependencias de Maven con ./mvnw clean install
+4. Configura las variables de entorno para conectar con MongoDB (detallado en la sección de configuración).
+5. Ejecuta el proyecto.
 
 ## **Configuración**
-Configuración de la base de datos MongoDB:
-Debes tener un servidor MongoDB corriendo. 
-El archivo application.yml o application.properties se utiliza para definir las configuraciones del entorno, incluyendo la conexión a MongoDB.
+- Configuración de la base de datos MongoDB:
+Debes tener un servidor MongoDB corriendo.
+- El archivo application.yml o application.properties se utiliza para definir las configuraciones del entorno, incluyendo la conexión a MongoDB.
 En el caso de MongoDB en la nube (MongoDB Atlas), cambia el valor de uri por tu cadena de conexión.
 
 ## **Plataformas Utilizadas**
-Spring Boot: Framework para construir el backend con servicios REST.
-MongoDB: Base de datos NoSQL para almacenar los registros médicos.
-Maven: Herramienta de construcción y gestión de dependencias.
+- Spring Boot: Framework para construir el backend con servicios REST.
+- MongoDB: Base de datos NoSQL para almacenar los registros médicos.
+- Maven: Herramienta de construcción y gestión de dependencias.
 
 ## **Lenguajes Utilizados**
-Java 17: Lenguaje principal del proyecto.
-JSON: Formato de intercambio de datos entre el cliente y el servidor.
-JSON: Formato de intercambio de datos entre el cliente y el servidor.
+- Java 17: Lenguaje principal del proyecto.
+- JSON: Formato de intercambio de datos entre el cliente y el servidor.
