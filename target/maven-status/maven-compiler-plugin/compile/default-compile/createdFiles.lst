@@ -1,0 +1,10 @@
+com\Obligatorio\historial_medico\enums\Tipo.class
+com\Obligatorio\historial_medico\model\RegistroMedico.class
+com\Obligatorio\historial_medico\repositorio\PacienteRepository.class
+com\Obligatorio\historial_medico\repositorio\RegistroMedicoRepositoryImpl.class
+com\Obligatorio\historial_medico\controller\PacienteControlador.class
+com\Obligatorio\historial_medico\model\Paciente.class
+com\Obligatorio\historial_medico\repositorio\RegistroMedicoRepository.class
+com\Obligatorio\historial_medico\repositorio\RegistromedicoRepositoryCriterios.class
+com\Obligatorio\historial_medico\controller\RegistroMedicoControlador.class
+com\Obligatorio\historial_medico\ObligatorioApplication.class

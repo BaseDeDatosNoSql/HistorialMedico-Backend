@@ -1,10 +1,13 @@
 package com.Obligatorio.historial_medico.controller;
 
+import com.Obligatorio.historial_medico.enums.Tipo;
 import com.Obligatorio.historial_medico.model.RegistroMedico;
 import com.Obligatorio.historial_medico.repositorio.RegistroMedicoRepository;
 import com.Obligatorio.historial_medico.model.Paciente;
 import com.Obligatorio.historial_medico.repositorio.PacienteRepository;
+import com.Obligatorio.historial_medico.repositorio.RegistromedicoRepositoryCriterios;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.data.domain.Page;
@@ -18,6 +21,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/registros")
 public class RegistroMedicoControlador {
+
+    @Autowired
+    private RegistromedicoRepositoryCriterios registromedicoRepositoryCriterios;
 
     @Autowired
     private RegistroMedicoRepository registroMedicoRepository;
@@ -52,13 +58,14 @@ public class RegistroMedicoControlador {
 
     // Obtener registros por criterios
     @GetMapping("/criterios")
-    public ResponseEntity<List<RegistroMedico>> obtenerRegistrosPorCriterio(
-        @RequestParam(required = false) String tipo,
+    public ResponseEntity<List<RegistroMedico>> obtenerRegistrosPorCriterio(@RequestParam(required = false) Tipo tipo,
         @RequestParam(required = false) String diagnostico,
         @RequestParam(required = false) String medico,
         @RequestParam(required = false) String institucion) {
-        
-        List<RegistroMedico> registros = registroMedicoRepository.findByCriterios(tipo, diagnostico, medico, institucion);
+
+        //List<RegistroMedico> registros = registroMedicoRepository.findByCriterios(tipo, diagnostico, medico, institucion);
+        List<RegistroMedico> registros = registromedicoRepositoryCriterios.findByCriterios(tipo, diagnostico, medico, institucion);
+
         return ResponseEntity.ok(registros);
     }
 }
