@@ -45,7 +45,7 @@ Para instalar el proyecto localmente, sigue estos pasos:
 2. Asegúrate de tener Java 17 instalado.
 3. Instala las dependencias de Maven con ./mvnw clean install
 4. Configura las variables de entorno para conectar con MongoDB (detallado en la sección de configuración).
-5. Ejecuta el proyecto con mvn spring-boot:run.
+5. Ejecuta el proyecto con mvn spring-boot:run
 
 ## **Configuración**
 - Configuración de la base de datos MongoDB:
