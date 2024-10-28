@@ -26,6 +26,7 @@ El sistema expone varias URL para interactuar con el sistema de registros médic
 
 - GET	/api/registros	Obtener todos los registros médicos
 - GET	/api/registros/{id}	Obtener un registro médico por su ID
+- POST	*/api/pacientes*	: Crear un nuevo paciente
 - POST	/api/registros	Crear un nuevo registro médico
 - PUT	/api/registros/{id}	Actualizar un registro médico existente
 - DELETE	/api/registros/{id}	Eliminar un registro médico por su ID
