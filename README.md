@@ -26,12 +26,13 @@ El sistema expone varias URL para interactuar con el sistema de registros médic
 
 - GET	/api/registros	Obtener todos los registros médicos
 - GET	/api/registros/{id}	Obtener un registro médico por su ID
-- POST	**/api/pacientes**	: Crear un nuevo paciente
-- POST	/api/registros	Crear un nuevo registro médico
-- PUT	/api/registros/{id}	Actualizar un registro médico existente
+- POST	**http://localhost:8080/api/pacientes**	: AGREGAR PACIENTE
+- POST	**http://localhost:8080/api/registros/{{ciPaciente}}**	: AGREGAR REGISTRO MEDICO asociado a un paciente
+- GET **http://localhost:8080/api/registros/historial/{{ciPaciente}}?** : CONSULTAR HISTORIAL MEDICO por CI del paciente, con paginación
+- PUT	/api/registros/{id}	: Actualizar un registro médico existente
 - DELETE	/api/registros/{id}	Eliminar un registro médico por su ID
-- GET	/api/registros/criterios	. Buscar registros médicos por criterios (tipo, diagnóstico, etc.)
-- *Parámetros de búsqueda en /api/registros/criterios*:
+- GET	**http://localhost:8080/api/registros/criterios?**	: OBTENER REGISTROS POR CRITERIO, pueden ser por tipo(CONSULTA,EXAMEN,INTERNACION), diagnostico, medico y/o institucion.
+ *Parámetros de búsqueda en /api/registros/criterios*:
 tipo: Filtrar por el tipo de consulta (CONSULTA, EXAMEN, INTERNACION).
 diagnostico: Filtrar por diagnóstico (e.g., Gripe).
 medico: Filtrar por el nombre del médico (e.g., Dr. García).
