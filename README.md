@@ -117,7 +117,7 @@ A continuación se presentan ejemplos de cada uno:
             ports:
                 - "27017:27017"
             volumes:
-                - /c/Users/Alexander/Desktop/DOCKER/data/db:/data/db
+                - /c/Users/Developer1/Desktop/DOCKER/data/db:/data/db
     volumes:
         mongo_data:
             driver: local
