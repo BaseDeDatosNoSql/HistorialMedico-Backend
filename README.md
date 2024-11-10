@@ -15,6 +15,7 @@ El sistema expone servicios RESTful para realizar operaciones y consultas espec�
 7. [Bases de Datos Utilizadas](#bases-de-datos-utilizadas)
 8. [Justificación de la Base de Datos Elegida](#justificación-de-la-base-de-datos-elegida)
 9. [Diseño del Esquema](#diseño-del-esquema)
+10. [Implementación con Docker](#docker)
 
 ## **Formato de Intercambio de Datos**
 
@@ -63,3 +64,136 @@ En el caso de MongoDB en la nube (MongoDB Atlas), cambia el valor de uri por tu 
 ## **Lenguajes Utilizados**
 - Java 17: Lenguaje principal del proyecto.
 - JSON: Formato de intercambio de datos entre el cliente y el servidor.
+
+<br>
+
+---
+---
+---
+
+<br>
+
+## **Docker**
+1. [Instalación](#instalación-docker)
+2. [Configuración](#configuración-docker)
+3. [Ejecución](#ejecución-docker)
+4. [Troubleshooting](#troubleshooting-docker)
+
+## **Instalación Docker**
+
+Descargar de la [web de Docker](https://www.docker.com/) Docker Desktop en la versión correspondiente para el OS utilizado (*en éste caso AMD64 Windows 11*). También se puede utilizar un gestor de paquetes como Chocolatey o Scoop.
+
+## **Configuración Docker**
+
+Se debe crear un directorio en el cual se encontrará el archivo de configuración llamado *docker-compose.yml* y donde se almacenarán los datos persistidos, en éste ejemplo se creará en: *C:\Users\Developer1\Desktop\DOCKER* 
+
+Así mismo también se debe crear un archivo en la ruta del proyecto llamado *Dockerfile.txt*, que contendrá la información para vincular el proyecto con Docker.
+A continuación se presentan ejemplos de cada uno:
+
+<details>
+  <summary><b>Dockerfile.txt</b></summary>
+ 
+    FROM mongo:latest
+    WORKDIR /data/db
+    EXPOSE 27017
+<details>
+        <summary><i>Descripción</i></summary>
+        &emsp;&emsp;<b>FROM mongo:latest </b> <- <i> Indica utilizar la última version de Mongo. (Se puede especificar version)</i> <br>
+        &emsp;&emsp;<b>WORKDIR /data/db </b> <- <i> La ubicación del directorio donde persistirán los datos dentro del contenedor.</i><br>
+        &emsp;&emsp;<b>EXPOSE 27017 </b> <-<i> Puerto que expone el contenedor para conectarse desde el host.</i><br>
+    </details>
+</details>
+<br>
+<details>
+  <summary><b>docker-compose.yml</b></summary>
+
+    services:
+        mongodb:
+            image: mongo:8.0.1
+            container_name: mongo_container
+        #        environment:
+        #            - MONGO_INITDB_ROOT_USERNAME=admin
+        #            - MONGO_INITDB_ROOT_PASSWORD=password
+            ports:
+                - "27017:27017"
+            volumes:
+                - /c/Users/Alexander/Desktop/DOCKER/data/db:/data/db
+    volumes:
+        mongo_data:
+            driver: local
+<details>
+        <summary><i>Descripción</i></summary>
+    <b>services:</b><i> <- Define los contenedores (servicios) que se ejecutarán en esta configuración de Docker Compose.</i><br>
+        &emsp;<b>mongodb:</b><i> <- Nombre del servicio que vamos a definir.</i><br>
+            &emsp;&emsp;<b>image: mongo:8.0.1</b><i> <- Especifica la version. Docker descarga la version indicada si es que no está localmente.</i><br>
+            &emsp;&emsp;<b>container_name: mongo_container</b><i> <- Nombre que nosotros elegimos para el contenedor.</i><br>
+        #        &emsp;&emsp;<b>environment:</b><i> <- En ésta sección se pueden settear variables de entorno que MongoDB utilizará al iniciarse.</i><br>
+        #            &emsp;&emsp;&emsp;<b>- MONGO_INITDB_ROOT_USERNAME=admin</b><i> <- Nombre de usuario para conectarse.</i><br>
+        #            &emsp;&emsp;&emsp;<b>- MONGO_INITDB_ROOT_PASSWORD=password</b><i> <- Password a utilizar para conectarse.</i><br>
+            &emsp;&emsp;<b>ports:</b><i> <- Define el mapeo de puertos entre el contenedor y el host.</i><br>
+                &emsp;&emsp;&emsp;<b>- "27017:27017"</b><i> <- Al mapear este puerto, se puede acceder a MongoDB desde el host en localhost:27017, y las conexiones se redirigirán al contenedor</i><br>
+            &emsp;&emsp;<b>volumes:</b><i> <- Define los volúmenes para persistir los datos.</i><br>
+                &emsp;&emsp;&emsp;<b>- /c/Users/Developer1/Desktop/DOCKER/data/db:/data/db</b><i> <- Especifica un volumen, mapeando una carpeta del host al contenedor.</i><br>
+    <b>volumes:</b><i> <- Define volúmenes a nivel global en Docker Compose, lo que significa que pueden ser utilizados por otros servicios.</i><br>
+        &emsp;<b>mongo_data:</b><i> <- Nombre que le damos al volumen global</i><br>
+            &emsp;&emsp;<b>driver: local</b><i> <- Indica que Docker almacenará el volumen en el sistema de archivos local del host.</i><br>
+    </details>
+</details>
+
+
+
+
+## **Ejecución Docker**
+
+El procedimiento consta en levantar el servicio Docker desde Powershell con privilegios de Administrador y luego continuar con el procedimiento normal.
+
+1. ### Ejecutar Docker Compose
+````md
+    docker-compose up -d
+````
+&emsp;&emsp;&emsp;Esto iniciará el contenedor en segundo plano (-d), descargando la imagen de MongoDB si es necesario.
+
+2. ### Verificar que MongoDB está corriendo
+````md
+    docker ps
+````
+&emsp;&emsp;&emsp; Lo que debe mostrar algo como lo de a continuación
+
+|CONTAINER ID|IMAGE|COMMAND|CREATED|STATUS|PORTS|NAMES|
+|------------|-----|-------|-------|------|-----|-----|
+|2a07757a35fe|mongo:8.0.1|"docker-entrypoint.s…"|15 hours ago|Up 15 hours|0.0.0.0:27017->27017/tcp|mongo_container|
+
+3. ### Conectar a la Base de Datos
+
+&emsp;&emsp;&emsp; Ahora cuando se corra la DB y se le empiece a enviar solicitudes aparecerá una carpeta llamada ***data*** en el directorio donde se encuentra ***docker-compose.yml***.
+
+4. ### Desconectar la Base de Datos
+
+&emsp;&emsp;&emsp; Para desconectar la DB basta con correr:
+````md
+    docker-compose down
+````
+&emsp;&emsp;&emsp; A tener en cuenta de **no** pasar el parámetro ***-v*** ya que ésto eliminará los datos persistidos.
+
+## Troubleshooting Docker
+
+Si luego de la instalación Docker no inicia mostrando un error *"deploying WSL2 distributions..."* hay que habilitar la característica de Windows 11 de virtualización utilizando las herramientas de DISM:
+
+- Desde Powershell con privilegios administrador 
+````md
+    dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+ ````
+ 
+- Si se necesitan mayor información de la conexión con el contenedor se pueden chequear los log:
+````md
+    docker logs NOMBRE_DEL_CONTENEDOR
+````
+
+- Se realizo cambios en docker-compose.yml y no los veo reflejados problablemente sea que para que se apliquen se debe levantar nuevamente el servicio:
+
+````md
+    docker-compose up -d
+````
+
+
+
