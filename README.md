@@ -146,7 +146,7 @@ A continuación se presentan ejemplos de cada uno:
 
 ## **Ejecución Docker**
 
-El procedimiento consta en levantar el servicio Docker desde Powershell con privilegios de Administrador y luego continuar con el procedimiento normal.
+El procedimiento consta en: primero ejecutar Docker Desktop y luego (en el directorio donde se encuentra el docker-compose.yml) levantar el servicio Docker desde Powershell con privilegios de Administrador y luego continuar con el procedimiento normal.
 
 1. ### Ejecutar Docker Compose
 ````md
