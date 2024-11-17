@@ -75,10 +75,17 @@ En el caso de MongoDB en la nube (MongoDB Atlas), cambia el valor de uri por tu 
 <br>
 
 ## **Docker**
-1. [Instalación](#instalación-docker)
-2. [Configuración](#configuración-docker)
-3. [Ejecución](#ejecución-docker)
-4. [Troubleshooting](#troubleshooting-docker)
+1. [Ventajas](#ventajas-en-la-utilización-de-docker)
+2. [Instalación](#instalación-docker)
+3. [Configuración](#configuración-docker)
+4. [Ejecución](#ejecución-docker)
+5. [Troubleshooting](#troubleshooting-docker)
+
+## **Ventajas en la utilización de Docker**
+
+Portabilidad: Se puede mover el contenedor fácilmente entre entornos sin que el entorno afecte el funcionamiento (basta con copiar la carpeta /data y el docker-composer.yml).
+Aislamiento: El contenedor de Docker corre de forma aislada, evitando conflictos de dependencias o configuración con otros programas.
+Facilidad de replicación: Se puede crear múltiples instancias idénticas del contenedor para pruebas, desarrollo o escalado en producción.
 
 ## **Instalación Docker**
 
