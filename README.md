@@ -83,9 +83,9 @@ En el caso de MongoDB en la nube (MongoDB Atlas), cambia el valor de uri por tu 
 
 ## **Ventajas en la utilización de Docker**
 
-Portabilidad: Se puede mover el contenedor fácilmente entre entornos sin que el entorno afecte el funcionamiento (basta con copiar la carpeta /data y el docker-composer.yml).
-Aislamiento: El contenedor de Docker corre de forma aislada, evitando conflictos de dependencias o configuración con otros programas.
-Facilidad de replicación: Se puede crear múltiples instancias idénticas del contenedor para pruebas, desarrollo o escalado en producción.
+Portabilidad: Se puede mover el contenedor fácilmente entre entornos sin que el entorno afecte el funcionamiento (basta con copiar la carpeta /data y el docker-composer.yml). <br>
+Aislamiento: El contenedor de Docker corre de forma aislada, evitando conflictos de dependencias o configuración con otros programas.<br>
+Facilidad de replicación: Se puede crear múltiples instancias idénticas del contenedor para pruebas, desarrollo o escalado en producción.<br>
 
 ## **Instalación Docker**
 
