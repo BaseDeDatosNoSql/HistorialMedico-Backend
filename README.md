@@ -12,15 +12,13 @@ El sistema expone servicios RESTful para realizar operaciones y consultas espec�
 4. [Configuración](#configuración)
 5. [Plataformas Utilizadas](#plataformas-utilizadas)
 6. [Lenguajes Utilizados](#lenguajes-utilizados)
-7. [Bases de Datos Utilizadas](#bases-de-datos-utilizadas)
-8. [Justificación de la Base de Datos Elegida](#justificación-de-la-base-de-datos-elegida)
-9. [Diseño del Esquema](#diseño-del-esquema)
-10. [Implementación con Docker](#docker)
-11. [Implementación con Jenkins](#Implementacion-de-Jenkins)
+7. [Base de Datos](#base-de-datos-utilizada)
+8. [Implementación con Docker](#docker)
+9. [Implementación con Jenkins](#Implementacion-de-Jenkins)
 
 ## **Formato de Intercambio de Datos**
 
-El proyecto utiliza **JSON** como formato principal para el intercambio de datos en las APIs REST. Cada solicitud y respuesta sigue el siguiente formato:
+El proyecto utiliza **JSON** (JavaScript Object Notation) como formato principal para el intercambio de datos en las APIs REST. <Cada solicitud y respuesta sigue el siguiente formato:>
 
 ## **Descripción de URL de los Servicios**
 
@@ -43,17 +41,17 @@ institucion: Filtrar por el nombre de la institución médica (e.g., Mutualista 
 ## **Instalación**
 
 Para instalar el proyecto localmente, sigue estos pasos:
-1. Clona el repositorio de GitHub:
-  git clone https://github.com/usuario/historial-medico-backend.git
-  cd historial-medico-backend
-2. Asegúrate de tener Java 17 instalado.
-3. Instala las dependencias de Maven con ./mvnw clean install
+1. Clonar el repositorio de GitHub: <br>
+  *git clone https://github.com/usuario/historial-medico-backend.git* <br>
+  *cd historial-medico-backend*
+2. Asegurarse de tener Java 17 instalado.
+3. Instalar las dependencias de Maven con: *./mvnw clean install*
 4. Configura las variables de entorno para conectar con MongoDB (detallado en la sección de configuración).
-5. Ejecuta el proyecto con mvn spring-boot:run
+5. Ejecuta el proyecto con: *mvn spring-boot:run*
 
 ## **Configuración**
 - Configuración de la base de datos MongoDB:
-Debes tener un servidor MongoDB corriendo.
+Se debe tener un servidor MongoDB corriendo.
 - El archivo application.yml o application.properties se utiliza para definir las configuraciones del entorno, incluyendo la conexión a MongoDB.
 En el caso de MongoDB en la nube (MongoDB Atlas), cambia el valor de uri por tu cadena de conexión.
 
@@ -65,6 +63,14 @@ En el caso de MongoDB en la nube (MongoDB Atlas), cambia el valor de uri por tu 
 ## **Lenguajes Utilizados**
 - Java 17: Lenguaje principal del proyecto.
 - JSON: Formato de intercambio de datos entre el cliente y el servidor.
+
+## **Base de datos utilizada**
+En éste proyecto se utilizó MongoBD ya que: 
+- Es una base de datos en la que todos (en mayor o menor medida) conocemos.
+- Presenta un modelo de datos flexible permitiendonos almacenar datos en estructuras variadas (anidaciones y matrices) de ser necesario.
+- Posee la herramienta MongoDB Compass que facilita la visualización y gestión de los datos.
+- Una gran comunidad en donde se puede encontrar infinidad de tutoriales, guías y documentación para aprender y resolver problemas más rápidamente.
+
 
 <br>
 
