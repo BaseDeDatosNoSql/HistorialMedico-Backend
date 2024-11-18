@@ -114,33 +114,28 @@ Descargar de la [web de Docker](https://www.docker.com/) Docker Desktop en la ve
    EXPOSE 8080
    ENTRYPOINT ["java", "-jar", "app.jar"]
 
-2. 
-<details>
-  <summary><b>docker-compose.yml</b> (para ambos servicios: backend y base de datos)</summary>
+ 
+2. **Docker-compose.yml** (para ambos servicios: backend y base de datos): Ubícalo en el directorio raíz del proyecto.
+version: '3.8'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo_container:27017/historial_medico
+    depends_on:
+      - mongo_container
 
-  ```yaml
-  version: '3.8'
-  services:
-    backend:
-      build:
-        context: .
-        dockerfile: Dockerfile
-      ports:
-        - "8081:8080"
-      environment:
-        - SPRING_DATA_MONGODB_URI=mongodb://mongo_container:27017/historial_medico
-      depends_on:
-        - mongo_container
-
-    mongo_container:
-      image: mongo:8.0.1
-      container_name: mongo_container
-      ports:
-        - "27018:27017"
-      volumes:
-        - ./data/db:/data/db
-
-</details>
+  mongo_container:
+    image: mongo:8.0.1
+    container_name: mongo_container
+    ports:
+      - "27018:27017"
+    volumes:
+      - ./data/db:/data/db
 
 3. **Configuración adicional** En application.properties o application.yml del backend:
 
