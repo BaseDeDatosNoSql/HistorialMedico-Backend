@@ -17,7 +17,7 @@ Elegimos MongoDb ya que el backend del proyecto fue desarrollado con Spring Boot
 5. [Plataformas Utilizadas](#plataformas-utilizadas)
 6. [Lenguajes Utilizados](#lenguajes-utilizados)
 7. [Base de Datos](#base-de-datos-utilizada)
-8. [Implementación con Docker](#docker)
+8. [Implementación con Docker](#Dockerización-del-Proyecto-\(Backend-y-Base-de-Datos\))
 9. [Implementación con Jenkins](#Implementacion-de-Jenkins) 
 
 ## **Formato de Intercambio de Datos**
@@ -107,44 +107,46 @@ Descargar de la [web de Docker](https://www.docker.com/) Docker Desktop en la ve
 
 1. **Dockerfile** (para el backend):
    Ubícalo en el directorio raíz del proyecto backend.
-   ```Dockerfile
-   FROM openjdk:17
-   WORKDIR /app
-   COPY target/historialmedico-backend.jar app.jar
-   EXPOSE 8080
-   ENTRYPOINT ["java", "-jar", "app.jar"]
-
+    ````md
+    FROM openjdk:17
+    WORKDIR /app
+    COPY target/historialmedico-backend.jar app.jar
+    EXPOSE 8080
+    ENTRYPOINT ["java", "-jar", "app.jar"]
+    ````
  
 2. **Docker-compose.yml** (para ambos servicios: backend y base de datos): Ubícalo en el directorio raíz del proyecto.
-version: '3.8'
-services:
-  backend:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8081:8080"
-    environment:
-      - SPRING_DATA_MONGODB_URI=mongodb://mongo_container:27017/historial_medico
-    depends_on:
-      - mongo_container
+    ````
+    version: '3.8'
+    services:
+    backend:
+        build:
+        context: .
+        dockerfile: Dockerfile
+        ports:
+        - "8081:8080"
+        environment:
+        - SPRING_DATA_MONGODB_URI=mongodb://mongo_container:27017/historial_medico
+        depends_on:
+        - mongo_container
 
-  mongo_container:
-    image: mongo:8.0.1
-    container_name: mongo_container
-    ports:
+    mongo_container:
+        image: mongo:8.0.1
+        container_name: mongo_container
+        ports:
       - "27018:27017"
-    volumes:
-      - ./data/db:/data/db
+        volumes:
+        - ./data/db:/data/db
+    ````
 
-3. **Configuración adicional** En application.properties o application.yml del backend:
-
-spring.application.name=Obligatorio
-spring.data.mongodb.uri=mongodb://mongo_container:27017/historial_medico
-
+3. **Configuración adicional**: En [application.properties](## "..\project\src\main\resources") *(o application.yml)* del backend:
+    ````md
+    spring.application.name=Obligatorio
+    spring.data.mongodb.uri=mongodb://mongo_container:27017/historial_medico
+    ````
 ------
 
- **DOCKERIZAR UNICAMENTE LA BASE DE DATOS**: 
+ ***DOCKERIZAR UNICAMENTE LA BASE DE DATOS***: 
 
 Se debe crear un directorio en el cual se encontrará el archivo de configuración llamado *docker-compose.yml* y donde se almacenarán los datos persistidos, en éste ejemplo se creará en: *C:\Users\Developer1\Desktop\DOCKER* 
 
@@ -206,28 +208,24 @@ A continuación se presentan ejemplos de cada uno:
 
 ## **Ejecución Docker**
 
-Pasos para levantar el backend y la base de datos
+Pasos para levantar el backend y la base de datos:
+
 1- Inicia Docker Desktop.
 
 2- Navega al directorio donde se encuentra el archivo docker-compose.yml.
 
-3- Construye y ejecuta los servicios en segundo plano:
-**docker-compose up -d --build**
+3- Construye y ejecuta los servicios en segundo plano: **docker-compose up -d --build**
 
-Esto:
+*Esto construirá la imagen del backend usando el Dockerfile e iniciará el contenedor de MongoDB.*
 
-Construirá la imagen del backend usando el Dockerfile.
-Iniciará el contenedor de MongoDB.
+4- Verificar que los contenedores estén corriendo: **docker ps**
 
-4- Verificar que los contenedores estén corriendo:
+*Salida esperada:*
 
-**docker ps**
-
-Salida esperada:
-
-CONTAINER ID   IMAGE                         STATUS          PORTS
-5937bf099539   mongo:8.0.1                   Up 2 minutes    0.0.0.0:27018->27017/tcp
-7d14beb97d43   historialmedico-backend       Up 2 minutes    0.0.0.0:8081->8080/tcp
+|CONTAINER ID|   IMAGE|               STATUS|      PORTS|
+|------------|--------|---------------------|-----------|
+|5937bf099539|mongo:8.0.1|            Up 2 minutes|0.0.0.0:27018->27017/tcp|
+|7d14beb97d43|historialmedico-backend|Up 2 minutes|0.0.0.0:8081->8080/tcp|
 
 5- Acceder al backend desde http://localhost:8081 y asegúrarse de que esté conectado a la base de datos MongoDB en el puerto 27018.
 
@@ -238,7 +236,8 @@ Detener ambos servicios: **docker-compose down**
 --------
 
  
-**UNICAMENTE LA BASE DE DATOS**:
+***UNICAMENTE LA BASE DE DATOS***:
+
 El procedimiento consta en: primero ejecutar Docker Desktop y luego (en el directorio donde se encuentra el docker-compose.yml) levantar el servicio Docker desde Powershell con privilegios de Administrador y luego continuar con el procedimiento normal.
 
 1. ### Ejecutar Docker Compose
@@ -294,12 +293,15 @@ Si luego de la instalación Docker no inicia mostrando un error *"deploying WSL2
 
 ## Notas Adicionales
 1- Directorio persistente de datos:
+MongoDB persiste los datos en **./data/db** 
 
-MongoDB persiste los datos en ./data/db. Este directorio debe estar accesible en el sistema.
-2- Tener la carpeta target del backend generada:
-**mvn clean package** Esto genera el archivo historialmedico-backend.jar en el directorio target.
+*Este directorio debe estar accesible en el sistema.*
 
-3- URL de MongoDB:Si se cambia los puertos en docker-compose.yml, actualizar la URL de MongoDB en el archivo de configuración del backend.
+2- Tener la carpeta target del backend generada: **mvn clean package** 
+
+*Esto genera el archivo historialmedico-backend.jar en el directorio target.*
+
+3- URL de MongoDB: Si se cambia los puertos en **docker-compose.yml**, actualizar la URL de MongoDB en el archivo de configuración del backend.
 
 
 
