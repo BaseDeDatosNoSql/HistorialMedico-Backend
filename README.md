@@ -258,6 +258,7 @@ Nos pedira un usuario y contraseña por defecto, el usuuario es: Admin y la cont
         - Maven Integration.
         - JUnit Plugin.
         - Otros.
+  Nota: en caso de que no se instale correctamente el plugin de Maven, se tendra que ir en Jenkins: Panel de control/Plugins/Avaliable Plugins y buscar Maven Integration, una vez encontrada instalarla.
 2. Creación de Usuario Administrador (opcional)
     - Se puede definir un usuario, contraseña y correo electronico para el administrador de Jenkins
 3. Finalización de configuración
@@ -282,8 +283,7 @@ Posterior a eso extraemos el archivo comprimido a una carpeta, en nuestro caso: 
   - Ingresar a System.
   - Vamos a la seccion variables globales.
   - Agregamos una nueva variable global "PATH".
-  - Se le asigna a dicha variable el siguiente valor: C:\apache-maven-3.9.9\bin;C:\Program Files\Java\jdk-17\bin
-  
+  - Se le asigna a dicha variable el siguiente valor: C:\apache-maven-3.9.9\bin;C:\Program Files\Java\jdk-17\bin  
 
 ## Crear y configurar un Trabajo en Jenkins
 1. Crear el job.
