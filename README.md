@@ -17,7 +17,7 @@ Elegimos MongoDb ya que el backend del proyecto fue desarrollado con Spring Boot
 5. [Plataformas Utilizadas](#plataformas-utilizadas)
 6. [Lenguajes Utilizados](#lenguajes-utilizados)
 7. [Base de Datos](#base-de-datos-utilizada)
-8. [Implementación con Docker](#Dockerización-del-Proyecto-\(Backend-y-Base-de-Datos\))
+8. [Implementación con Docker](#Dockerización-del-Proyecto-(Backend-y-Base-de-Datos))
 9. [Implementación con Jenkins](#Implementacion-de-Jenkins) 
 
 ## **Formato de Intercambio de Datos**
