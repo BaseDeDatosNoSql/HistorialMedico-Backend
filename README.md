@@ -303,7 +303,11 @@ MongoDB persiste los datos en **./data/db**
 
 3- URL de MongoDB: Si se cambia los puertos en **docker-compose.yml**, actualizar la URL de MongoDB en el archivo de configuración del backend.
 
+<br>
 
+---
+
+<br>
 
 ## **Implementacion de Jenkins**
 1.  [Uso de Jenkins y automatización del Backend](#Uso-de-Jenkins-y-automatización-del-Backend)
