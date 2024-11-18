@@ -275,9 +275,15 @@ Posterior a eso extraemos el archivo comprimido a una carpeta, en nuestro caso: 
     - Name: Maven-3.9.9
     - Install automatically: desactivado.
     - Path to Maven:la ruta donde descomprimos el archivo "apache-maven-3.9.9-bin.zip".
-## Nota importante: variable del sistema
+## Nota: variable del sistema
 - Si Jenkins no detecta Maven, es posible que no este sincronizado las variables de entorno.
-- Solucion: Reiniciar el servicio de Jenkins, en caso de que sea necesario iniciar sesion en el servicio, el usaurio a ingresar es el configurado en Maven, en nuestro caso Admin.
+- Solucion1: Reiniciar el servicio de Jenkins, en caso de que sea necesario iniciar sesion en el servicio, el usaurio a ingresar es el configurado en Maven, en nuestro caso Admin.
+- Solucion2: Dentro de la interfaz de Jenkins ir a: Admnistrar Jenkinks.
+  - Ingresar a System.
+  - Vamos a la seccion variables globales.
+  - Agregamos una nueva variable global "PATH".
+  - Se le asigna a dicha variable el siguiente valor: C:\apache-maven-3.9.9\bin;C:\Program Files\Java\jdk-17\bin
+  
 
 ## Crear y configurar un Trabajo en Jenkins
 1. Crear el job.
