@@ -36,7 +36,7 @@ public class RegistroMedicoControlador {
     public ResponseEntity<String> agregarRegistroMedico(@PathVariable String ciPaciente, @RequestBody RegistroMedico registroMedico) {
         Paciente paciente = pacienteRepository.findByCi(ciPaciente);
         if (paciente == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No existe un paciente con la cédula aportada como parámetro");
+            return ResponseEntity.status(HttpStatus.PAYMENT_REQUIRED).body("No existe un paciente con la cédula aportada como parámetro");
         }
         registroMedico.setCiPaciente(ciPaciente);
         registroMedicoRepository.save(registroMedico);
@@ -48,7 +48,7 @@ public class RegistroMedicoControlador {
     public ResponseEntity<?> consultarHistorialMedico(@PathVariable String ciPaciente, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
         Paciente paciente = pacienteRepository.findByCi(ciPaciente);
         if (paciente == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No existe un paciente con la cédula aportada como parámetro");
+            return ResponseEntity.status(HttpStatus.PAYMENT_REQUIRED).body("No existe un paciente con la cédula aportada como parámetro");
         }
 
         Pageable pageable = PageRequest.of(page, size, Sort.by("fecha").descending());
