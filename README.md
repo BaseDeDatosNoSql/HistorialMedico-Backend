@@ -139,6 +139,9 @@ Descargar de la [web de Docker](https://www.docker.com/) Docker Desktop en la ve
         - "27018:27017"
       volumes:
         - ./data/db:/data/db
+
+</details>
+
 3. **Configuración adicional** En application.properties o application.yml del backend:
 
 spring.application.name=Obligatorio
