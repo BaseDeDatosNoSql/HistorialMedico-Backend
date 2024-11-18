@@ -260,11 +260,11 @@ Nos pedira un usuario y contraseña por defecto, el usuuario es: Admin y la cont
         - Otros.
 2. Creación de Usuario Administrador (opcional)
     - Se puede definir un usuario, contraseña y correo electronico para el administrador de Jenkins
-3. Finalización de configuracion
+3. Finalización de configuración
     - Se completa el asistente y accedemos al panel principal de Jenkins.
 
-## Configuracion de herramientas en Jenkins (Maven)
-1. Instalacion de maven en el equipo local
+## Configuración de herramientas en Jenkins (Maven)
+1. Instalación de maven en el equipo local
 
 Procedemos a descargar apache maven desde su sitio oficial: https://maven.apache.org/download.cgi para este obligatorio usamos "apache-maven-3.9.9-bin.zip". 
 Posterior a eso extraemos el archivo comprimido a una carpeta, en nuestro caso: "C:\apache-maven-3.9.9"
@@ -286,15 +286,15 @@ Posterior a eso extraemos el archivo comprimido a una carpeta, en nuestro caso: 
     - Seleccionamos Freestyle Project.
 2. Configurar el repositorio Git.
     - Seleccionamos GitHub project, donde nos pediran la url del proyecto: https://github.com/BaseDeDatosNoSql/HistorialMedico-Backend/
-    - En la seccion Source Code Managemnt seleccionamos git, donde tenemos que ingresar la url del repositorio de: https://github.com/BaseDeDatosNoSql/HistorialMedico-Backend.git
+    - En la sección Source Code Managemnt seleccionamos git, donde tenemos que ingresar la url del repositorio de: https://github.com/BaseDeDatosNoSql/HistorialMedico-Backend.git
 
 3. Configurar el disparador.
-    - En la seccion Build triggers. seleccionamos Poll SCM.
-    - Se habilitara un campo en el que ingresaremos:
+    - En la sección Build triggers. seleccionamos Poll SCM.
+    - Se habilitará un campo en el que ingresaremos:
     ````md
     H/5 * * * *
     ````
-    - Esta configuracion hara que Jenkins sincronice cada 5 minutos. 
+    - Esta configuración hara que Jenkins sincronice cada 5 minutos. 
 
 4. Configurar Maven como paso de construcción.
     - En la seccion de Build, seleccionamos Add build step.
@@ -318,9 +318,18 @@ Posterior a eso extraemos el archivo comprimido a una carpeta, en nuestro caso: 
 
 ## Verificación y ejecución automática
 1. Despues de configurar el Trabajo, verifacamos el log desde la consola de salida para identificar errores si los hubiera.
-2. Cuando GitHUb detecta un cambio en el repositorio, Jenkins disparara autoamtiamente la construcccion y pruebas.
+2. Cuando GitHUb detecta un cambio en el repositorio, Jenkins disparara autocamtiamente la construccción y pruebas.
 
-
+## Nota: Modificacion de puerto 
+En caso de que se ejecuten la app java y Jenkins a la vez, se tiene que optar por una de las dos soluciones:
+1. Configuracion de Proxy para que se pueda reutilizar el mismo puerto a la vez.
+2. Cambiar los puertos que se usan (el de la app java o el que usa el propio Jenkins)
+En este laboratorio se opto por la segunda opción, siendo Jenkins el software a que le cambiara el numero de puerto, en nuestro caso seleccionamos el 8082.
+Para lo mismo se debe realizar los siguientes pasos:
+1. Ir a  C:\Program Files (x86)\Jenkins\jenkins.xml y editar el archivo.
+2. En la linea donde declara: <arguments>--httpPort=8080</arguments> cambiar al numero de puerto 8082.
+3. Guardar los cambios.
+4. Reiniciar el servicio de Jenkins o reiniciar el ordenador que tenga la instalación.
 </br>
 
 
