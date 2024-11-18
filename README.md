@@ -5,9 +5,9 @@ El backend está construido con **Spring Boot** y utiliza **MongoDB** como base 
 El sistema expone servicios RESTful para realizar operaciones y consultas específicas.
 
 La colección de Postman para interactuar con esta API está disponible públicamente. Puedes acceder a ella haciendo clic en el siguiente enlace:
-
-
 [Ver colección en Postman]https://www.postman.com/technical-explorer-93498435/public-api-workspace
+
+Elegimos MongoDb ya que el backend del proyecto fue desarrollado con Spring Boot, que cuenta con soporte nativo y herramientas robustas para interactuar con MongoDB a través del Spring Data MongoDB. Permitió una integración más rápida y directa con las funcionalidades requeridas, como operaciones CRUD y almacenamiento de documentos estructurados en JSON.
 
 ## **Tabla de Contenidos**
 1. [Formato de Intercambio de Datos](#formato-de-intercambio-de-datos)
