@@ -4,6 +4,10 @@ Este proyecto es un sistema de backend que permite gestionar el historial médic
 El backend está construido con **Spring Boot** y utiliza **MongoDB** como base de datos para almacenar los registros médicos. 
 El sistema expone servicios RESTful para realizar operaciones y consultas específicas.
 
+La colección de Postman para interactuar con esta API está disponible públicamente. Puedes acceder a ella haciendo clic en el siguiente enlace:
+
+
+[Ver colección en Postman]https://www.postman.com/technical-explorer-93498435/public-api-workspace
 
 ## **Tabla de Contenidos**
 1. [Formato de Intercambio de Datos](#formato-de-intercambio-de-datos)
@@ -14,7 +18,7 @@ El sistema expone servicios RESTful para realizar operaciones y consultas espec�
 6. [Lenguajes Utilizados](#lenguajes-utilizados)
 7. [Base de Datos](#base-de-datos-utilizada)
 8. [Implementación con Docker](#docker)
-9. [Implementación con Jenkins](#Implementacion-de-Jenkins)
+9. [Implementación con Jenkins](#Implementacion-de-Jenkins) 
 
 ## **Formato de Intercambio de Datos**
 
