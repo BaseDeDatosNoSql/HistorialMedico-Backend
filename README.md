@@ -258,7 +258,7 @@ Nos pedira un usuario y contraseña por defecto, el usuuario es: Admin y la cont
         - Maven Integration.
         - JUnit Plugin.
         - Otros.
-  Nota: en caso de que no se instale correctamente el plugin de Maven, se tendra que ir en Jenkins: Panel de control/Plugins/Avaliable Plugins y buscar Maven Integration, una vez encontrada instalarla.
+  <br>Nota: en caso de que no se instale correctamente el plugin de Maven, se tendra que ir en Jenkins: Panel de control/Plugins/Avaliable Plugins y buscar Maven Integration, una vez encontrada instalarla.
 2. Creación de Usuario Administrador (opcional)
     - Se puede definir un usuario, contraseña y correo electronico para el administrador de Jenkins
 3. Finalización de configuración
